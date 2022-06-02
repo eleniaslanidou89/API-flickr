@@ -7,6 +7,7 @@ class App extends Component {
     super()
     this.state = {
       pictures: [],
+      indexValue: 0,
     }
   }
   componentDidMount() {
@@ -35,9 +36,24 @@ class App extends Component {
             return <img alt="cats" src={srcPath}></img>
           })
           this.setState({ pictures: picArray })
-        }.bind(this)
+        }.bind(this),
       )
   }
+
+  /* Next Button */
+  nextHandler = () => {
+    var currentIndex = this.state.indexValue
+    currentIndex++
+    this.setState({ indexValue: currentIndex })
+  }
+
+  /* Prev Button */
+  prevHandler = () => {
+    var currentIndex = this.state.indexValue
+    currentIndex--
+    this.setState({ indexValue: currentIndex })
+  }
+
   render() {
     return (
       <div className="App">
@@ -45,7 +61,17 @@ class App extends Component {
           <h1 className="App-title">Welcome to my project!</h1>
           <h1 className="App-subtitle">Cats</h1>
         </header>
-        <p className="App-intro">{this.state.pictures}</p>
+        <p className="App-intro">
+          {this.state.pictures[this.state.indexValue]}
+        </p>
+        <div className="App-buttons">
+          <button onClick={this.prevHandler} className="App-button_style">
+            Prev
+          </button>
+          <button onClick={this.nextHandler} className="App-button_style">
+            Next
+          </button>
+        </div>
       </div>
     )
   }
