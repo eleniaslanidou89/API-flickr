@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 
+/* Get the data */
 class App extends Component {
   constructor() {
     super()
